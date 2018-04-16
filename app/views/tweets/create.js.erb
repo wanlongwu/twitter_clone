@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newTweetForm = document.getElementById('new_tweet');
+  newTweetForm.innerHTML = innerHTML;
+}
+
+function addTweet(tweetHTML) {
+  const tweets = document.getElementById('tweets');
+  tweets.insertAdjacentHTML('beforebegin', tweetHTML);
+}
+
+<% if @tweet.errors.any? %>
+  refreshForm('<%= j render "tweets/form", user: current_user, tweet: @tweet %>');
+<% else %>
+  addTweet('<%= j render "tweets/show", tweet: @tweet %>');
+  refreshForm('<%= j render "tweets/form", user: current_user, tweet: Tweet.new %>');
+<% end %>

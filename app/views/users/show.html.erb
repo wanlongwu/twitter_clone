@@ -1,7 +1,9 @@
+<%= render 'tweets/form', user: @user, tweet: @tweet %>
+
 <% if current_user.tweets.nil? %>
 <%= "you have no tweet, create one please!" %>
 <% else %>
 <% current_user.tweets.each do |tweet|%>
-  <%= tweet.content %>
+  <%= render 'tweets/show', tweet: tweet %>
   <% end %>
 <% end %>
