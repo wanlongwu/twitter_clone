@@ -1,16 +1,16 @@
 <template>
-  <div id="app">
-    <p>{{ message }}</p>
-  </div>
+
+  <ul id="app">
+    <li v-for="tweet in tweet_lists">
+      <p>{{ tweet.content }}</p>
+    </li>
+  </ul>
+
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
+  props: ["tweet_lists"]
 }
 </script>
 

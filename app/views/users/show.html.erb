@@ -1,18 +1,20 @@
 <%= render 'tweets/form', user: @user, tweet: @tweet %>
 
-<% if current_user.tweets.nil? %>
-<%= "you have no tweet, create one please!" %>
-<% else %>
-<% current_user.tweets.each do |tweet|%>
-  <%= render 'tweets/show', tweet: tweet %>
-  <% end %>
-<% end %>
 
 
+
+<%= tag.div id: :show, data: {tweets: current_user.tweets.to_json} %>
 
 <!-- <script>
     rails = window.rails = {};
     rails.messages = <%= raw @messages.to_json %>;
 </script>
  -->
-
+<!--
+<% if current_user.tweets.nil? %>
+<%= "you have no tweet, create one please!" %>
+<% else %>
+<% current_user.tweets.each do |tweet|%>
+  <%= render 'tweets/show', tweet: tweet %>
+  <% end %>
+<% end %> -->
