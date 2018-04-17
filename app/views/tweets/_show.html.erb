@@ -1,1 +1,10 @@
-<p id=tweets><%= tweet.content %></p>
+
+<!-- <p id=tweets><%= tweet.content %></p> -->
+
+<%= content_tag :div,
+  id: "show",
+  data: {
+    tweets: current_user.tweets.to_json,
+  } do %>
+
+<% end %>
