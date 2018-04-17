@@ -1,0 +1,12 @@
+
+<%= content_tag :div,
+  id: "tweet-form",
+  data: {
+    tweets: @tweets
+  } do %>
+
+  <label>tweet</label>
+  <input type="text" v-model="tweet.content" />
+  <button v-on:click="Submit">Submit</button>
+
+<% end %>

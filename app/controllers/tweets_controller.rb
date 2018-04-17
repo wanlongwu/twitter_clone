@@ -9,6 +9,10 @@ class TweetsController < ApplicationController
     end
   end
 
+  def index
+    @tweets = Tweet.all.order(updated_at: :desc)
+  end
+
   private
 
   def tweet_params

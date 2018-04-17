@@ -1,4 +1,4 @@
-<%= simple_form_for([ user, tweet ], remote: true) do |form| %>
+<%= simple_form_for([ tweet ], remote: true) do |form| %>
   <%= form.input :content, as: :text %>
   <%= form.button :submit %>
 <% end %>

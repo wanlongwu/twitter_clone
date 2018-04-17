@@ -3,6 +3,7 @@ import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 
 const tweets_store = {}
+const all_tweets = {}
 
 document.addEventListener('DOMContentLoaded', function() {
   const element = document.getElementById("show")
@@ -22,6 +23,18 @@ document.addEventListener('DOMContentLoaded', function() {
           })
         }
       },
+      components: { App }
+    })
+  }
+
+  const element2 = document.getElementById("tweet-form")
+  if (element2 != undefined){
+    all_tweets.tweets = JSON.parse(element2.dataset.tweets)
+
+    const app = new Vue({
+      el:element2,
+      data: all_tweets,
+      template: "<App :tweet_lists='tweets' />",
       components: { App }
     })
   }
