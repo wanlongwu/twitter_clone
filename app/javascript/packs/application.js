@@ -4,6 +4,7 @@ import App from '../app.vue'
 
 const tweets_store = {}
 const all_tweets = {}
+const feed_tweets = {}
 
 document.addEventListener('DOMContentLoaded', function() {
   const element = document.getElementById("show")
@@ -34,6 +35,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const app = new Vue({
       el:element2,
       data: all_tweets,
+      template: "<App :tweet_lists='tweets' />",
+      components: { App }
+    })
+  }
+
+  const element3 = document.getElementById("feed-form")
+  if (element3 != undefined){
+    feed_tweets.tweets = JSON.parse(element3.dataset.tweets)
+
+    const app = new Vue({
+      el:element3,
+      data: feed_tweets,
       template: "<App :tweet_lists='tweets' />",
       components: { App }
     })
