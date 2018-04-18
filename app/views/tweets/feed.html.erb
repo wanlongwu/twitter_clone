@@ -1,11 +1,12 @@
+
+  <label>tweet</label>
+  <input type="text" v-model="tweet.content" />
+  <button v-on:click="Submit">Submit</button>
+
 <%= content_tag :div,
   id: "feed-form",
   data: {
     tweets: @sorted_tweets
   } do %>
-
-  <label>tweet</label>
-  <input type="text" v-model="tweet.content" />
-  <button v-on:click="Submit">Submit</button>
 
 <% end %>
