@@ -1,16 +1,27 @@
 class TweetsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
-    @tweet.save!
     respond_to do |format|
-      format.html { redirect_to user_path(current_user) }
-      format.js
+      format.json do
+        if @tweet.save!
+          render :json => @tweet
+        else
+          render :json => { :errors => @tweet.errors.messages }
+        end
+      end
     end
   end
 
   def index
     @tweets = Tweet.all.order(updated_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @tweets }
+    end
   end
 
   def feed

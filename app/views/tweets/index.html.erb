@@ -5,8 +5,24 @@
     tweets: @following_tweets
   } do %>
 
-  <label>tweet</label>
-  <input type="text" v-model="tweet.content" />
-  <button v-on:click="Submit">Submit</button>
+
 
 <% end %>
+
+
+<h1>Tweets</h1>
+
+<div id="tweets">
+  <label>tweet now!</label>
+  <input type="text" v-model="tweet.content" />
+  <span style="color:red">{{ errors.content }}</span>
+  <button @click="saveTweet">Submit</button>
+
+  <table>
+    <tbody>
+      <tr v-for="tweet in tweets">
+        <td>{{ tweet.content }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
