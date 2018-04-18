@@ -7,7 +7,7 @@ class TweetsController < ApplicationController
     respond_to do |format|
       format.json do
         if @tweet.save!
-          render :json => @tweet
+          render :json => @tweet.to_json(include: :user)
         else
           render :json => { :errors => @tweet.errors.messages }
         end
@@ -33,6 +33,10 @@ class TweetsController < ApplicationController
     end
     @sorted_tweets = following_tweets.sort_by{|x|x.updated_at}.reverse
 
+    respond_to do |format|
+      format.html
+      format.json { render :json => @sorted_tweets.to_json(include: :user) }
+    end
   end
 
   private
