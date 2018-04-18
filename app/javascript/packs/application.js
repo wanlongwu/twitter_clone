@@ -88,8 +88,8 @@ var tweets = new Vue({
         url:'/tweets.json',
         success: function(response) {
           that.errors = {};
-          console.log(that)
-          console.log(response)
+          // console.log(that)
+          // console.log(response)
           that.tweets.unshift(response);
         },
         error: function(response) {
@@ -100,45 +100,45 @@ var tweets = new Vue({
   }
 })
 
-// var feeds = new Vue({
-//   el: '#feeds',
-//   data: {
-//     tweets: [],
-//     tweet: {
-//       content: ''
-//     },
-//     errors: {}
-//   },
-//   mounted: function() {
-//     var that;
-//     that = this;
-//     $.ajax({
-//       url:'/tweets/feed.json',
-//       success: function(response) {
-//         that.tweets = response;
-//       }
-//     });
-//   },
-//   methods: {
-//     saveTweet: function() {
-//       var that;
-//       that = this;
-//       $.ajax({
-//         method: 'POST',
-//         data: {
-//           tweet: that.tweet
-//         },
-//         url:'/tweets.json',
-//         success: function(response) {
-//           that.errors = {};
-//           // console.log(that)
-//           // console.log(response)
-//           that.tweets.unshift(response);
-//         },
-//         error: function(response) {
-//           that.errors = response.responseJSON.errors;
-//         }
-//       })
-//     }
-//   }
-// })
+var feeds = new Vue({
+  el: '#feeds',
+  data: {
+    tweets: [],
+    tweet: {
+      content: ''
+    },
+    errors: {}
+  },
+  mounted: function() {
+    var that;
+    that = this;
+    $.ajax({
+      url:'/tweets/feed.json',
+      success: function(response) {
+        that.tweets = response;
+      }
+    });
+  },
+  methods: {
+    saveTweet: function() {
+      var that;
+      that = this;
+      $.ajax({
+        method: 'POST',
+        data: {
+          tweet: that.tweet
+        },
+        url:'/tweets.json',
+        success: function(response) {
+          that.errors = {};
+          // console.log(that)
+          // console.log(response)
+          that.tweets.unshift(response);
+        },
+        error: function(response) {
+          that.errors = response.responseJSON.errors;
+        }
+      })
+    }
+  }
+})
