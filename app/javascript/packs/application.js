@@ -67,7 +67,7 @@ const addFollowStatus = (array,tweets) => {
       // console.log(tweet.follow);
     };
   });
-  console.log(tweets);
+  // console.log(tweets);
   return tweets;
 }
 
@@ -78,9 +78,6 @@ var tweets = new Vue({
     tweets: [],
     tweet: {
       content: '',
-      user: {
-        username: ''
-      }
     },
     errors: {}
   },
