@@ -17,6 +17,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order(updated_at: :desc)
+    @users_array = current_user.following_users.split(" ")
 
     respond_to do |format|
       format.html
@@ -26,17 +27,19 @@ class TweetsController < ApplicationController
 
   def feed
     following_tweets = []
-    users_array = current_user.following_users.split(" ")
-    users_array.each do |user_id|
+    @users_array = current_user.following_users.split(" ")
+
+    @users_array.each do |user_id|
       user_obj = User.find(user_id)
       following_tweets += user_obj.tweets
     end
-    @sorted_tweets = following_tweets.sort_by{|x|x.updated_at}.reverse
+    sorted_tweets = following_tweets.sort_by{|x|x.updated_at}.reverse
 
     respond_to do |format|
       format.html
-      format.json { render :json => @sorted_tweets.to_json(include: :user) }
+      format.json { render :json => sorted_tweets.to_json(include: :user) }
     end
+
   end
 
   private

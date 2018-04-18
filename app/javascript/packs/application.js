@@ -53,6 +53,24 @@ import App from '../app.vue'
   // }
 // })
 
+// users_array is array of following users' ids
+const users_array = JSON.parse(document.getElementById("users").innerHTML);
+let new_tweets = [];
+
+const addFollowStatus = (array,tweets) => {
+  tweets.forEach(function(tweet){
+    if (array.includes(tweet.user_id.toString()) === true) {
+      tweet.follow = "followed";
+      // console.log(tweet.follow);
+    } else {
+      tweet.follow = "not followed"
+      // console.log(tweet.follow);
+    };
+  });
+  console.log(tweets);
+  return tweets;
+}
+
 
 var tweets = new Vue({
   el: '#tweets',
@@ -72,7 +90,7 @@ var tweets = new Vue({
     $.ajax({
       url:'/tweets.json',
       success: function(response) {
-        that.tweets = response;
+        that.tweets = addFollowStatus(users_array,response);
       }
     });
   },
@@ -88,8 +106,6 @@ var tweets = new Vue({
         url:'/tweets.json',
         success: function(response) {
           that.errors = {};
-          // console.log(that)
-          // console.log(response)
           that.tweets.unshift(response);
         },
         error: function(response) {
@@ -115,7 +131,8 @@ var feeds = new Vue({
     $.ajax({
       url:'/tweets/feed.json',
       success: function(response) {
-        that.tweets = response;
+        // console.log(response)
+        that.tweets = addFollowStatus(users_array,response);
       }
     });
   },
