@@ -20,7 +20,7 @@ class TweetsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.json { render :json => @tweets }
+      format.json { render :json => @tweets.to_json(include: :user) }
     end
   end
 
@@ -32,6 +32,7 @@ class TweetsController < ApplicationController
       following_tweets += user_obj.tweets
     end
     @sorted_tweets = following_tweets.sort_by{|x|x.updated_at}.reverse
+
   end
 
   private
