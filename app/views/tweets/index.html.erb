@@ -21,8 +21,8 @@
   <table>
     <tbody>
       <tr v-for="tweet in tweets">
-        <td>{{ tweet.user.username }}</td>
-        <td>{{ tweet.follow }}</td>
+      <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
+      <td>{{ tweet.follow }}</td>
         <td>{{ tweet.content }}</td>
       </tr>
     </tbody>

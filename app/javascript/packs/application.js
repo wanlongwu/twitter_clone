@@ -54,9 +54,11 @@ import App from '../app.vue'
 // })
 
 // // users_array is array of following users' ids
+let users_array = [];
 if (document.getElementById("users") != undefined) {
-const users_array = JSON.parse(document.getElementById("users").innerHTML);
+  users_array = JSON.parse(document.getElementById("users").innerHTML);
 };
+// console.log(users_array);
 
 let new_tweets = [];
 
@@ -171,10 +173,13 @@ var show = new Vue({
     errors: {}
   },
   mounted: function() {
+    const selectId = document.getElementById("select-id").innerHTML;
+    const a = `/users/${selectId}.json`;
+    console.log(selectId);
     var that;
     that = this;
     $.ajax({
-      url:'/users/6.json',
+      url: a,
       success: function(response) {
         console.log(response);
         that.tweets = response;
