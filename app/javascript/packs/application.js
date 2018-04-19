@@ -53,9 +53,10 @@ import App from '../app.vue'
   // }
 // })
 
-// users_array is array of following users' ids
+// // users_array is array of following users' ids
+if (document.getElementById("users") != undefined) {
 const users_array = JSON.parse(document.getElementById("users").innerHTML);
-const currentUserId = current_user.innerHTML;
+};
 
 let new_tweets = [];
 
@@ -159,3 +160,29 @@ var feeds = new Vue({
     },
   }
 })
+
+var show = new Vue({
+  el: '#show',
+  data: {
+    tweets: [],
+    tweet: {
+      content: ''
+    },
+    errors: {}
+  },
+  mounted: function() {
+    var that;
+    that = this;
+    $.ajax({
+      url:'/users/6.json',
+      success: function(response) {
+        console.log(response);
+        that.tweets = response;
+      },
+      error: function(response) {
+          that.errors = response.responseJSON.errors;
+        }
+    });
+  },
+})
+
