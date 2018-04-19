@@ -1,16 +1,4 @@
 
- <!--  <label>tweet</label>
-  <input type="text" v-model="tweet.content" />
-  <button v-on:click="Submit">Submit</button>
-
-<%= content_tag :div,
-  id: "feed-form",
-  data: {
-    tweets: @sorted_tweets
-  } do %>
-
-<% end %> -->
-
 <h1>Tweets</h1>
 
 <div id="feeds">
@@ -22,12 +10,13 @@
   <table>
     <tbody>
       <tr v-for="tweet in tweets">
-        <td>{{ tweet.user.username }}</td>
+        <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
         <td>{{ tweet.follow }}</td>
-        <!-- <td><button @click="follow">follow</button></td> -->
         <td>{{ tweet.content }}</td>
       </tr>
     </tbody>
   </table>
   <div id="users" style="display: none;"> <%= @users_array %> </div>
+  <div id="current_user" style="display: none;"> <%= current_user.id %> </div>
+
 </div>

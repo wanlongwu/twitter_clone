@@ -1,15 +1,23 @@
 
 
-<%= render 'tweets/form', user: @user, tweet: @tweet %>
+<h1>Tweets</h1>
 
-<form id="tweet-form" action="/tweets" method="post">
-  <input type="text" v-model="tweet.content">
-</form>
+<div id="feeds">
+  <label>tweet now!</label>
+  <input type="text" v-model="tweet.content" />
+  <span style="color:red">{{ errors.content }}</span>
+  <button @click="saveTweet">Submit</button>
 
-<% if current_user.tweets.nil? %>
-<%= "you have no tweet, create one please!" %>
-<% else %>
-<% current_user.tweets.each do |tweet|%>
-  <%= render 'tweets/show', tweet: tweet %>
-  <% end %>
-<% end %>
+  <table>
+    <tbody>
+      <tr v-for="tweet in tweets">
+        <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
+        <td>{{ tweet.follow }}</td>
+        <td>{{ tweet.content }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div id="users" style="display: none;"> <%= @users_array %> </div>
+  <div id="current_user" style="display: none;"> <%= current_user.id %> </div>
+
+</div>

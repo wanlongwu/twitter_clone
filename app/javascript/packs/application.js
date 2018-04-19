@@ -55,6 +55,8 @@ import App from '../app.vue'
 
 // users_array is array of following users' ids
 const users_array = JSON.parse(document.getElementById("users").innerHTML);
+const currentUserId = current_user.innerHTML;
+
 let new_tweets = [];
 
 const addFollowStatus = (array,tweets) => {
@@ -70,7 +72,6 @@ const addFollowStatus = (array,tweets) => {
   // console.log(tweets);
   return tweets;
 }
-
 
 var tweets = new Vue({
   el: '#tweets',
@@ -155,6 +156,6 @@ var feeds = new Vue({
           that.errors = response.responseJSON.errors;
         }
       })
-    }
+    },
   }
 })
