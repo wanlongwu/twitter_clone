@@ -97,6 +97,7 @@ var tweets = new Vue({
       that = this;
       $.ajax({
         method: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: {
           tweet: that.tweet
         },
@@ -139,6 +140,7 @@ var feeds = new Vue({
       that = this;
       $.ajax({
         method: 'POST',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: {
           tweet: that.tweet
         },
