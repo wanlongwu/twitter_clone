@@ -29,7 +29,7 @@ class TweetsController < ApplicationController
   def feed
     following_tweets = []
 
-    if current_user != nil
+    if current_user != nil && current_user.following_users != nil
       @users_array = current_user.following_users.split(" ")
       @users_array.each do |user_id|
         user_obj = User.find(user_id)
