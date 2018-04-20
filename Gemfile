@@ -19,6 +19,11 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'carrierwave', '~> 1.2'
+gem 'cloudinary'
+gem 'mini_magick'
+
+
 
 group :development do
   gem 'web-console', '>= 3.3.0'

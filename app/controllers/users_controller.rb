@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:following_users, :password, :email)
+    params.require(:user).permit(:following_users, :password, :email, :avatar)
   end
 
 end

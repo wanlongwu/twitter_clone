@@ -10,6 +10,7 @@
   <table>
     <tbody>
       <tr v-for="tweet in tweets">
+        <td> <%= cl_image_tag("profile.png") %> </td>
         <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
         <td>{{ tweet.follow }}</td>
         <td>{{ tweet.content }}</td>
