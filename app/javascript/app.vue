@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 
   <ul id="app">
     <li v-for="tweet in tweet_lists">
@@ -20,3 +20,4 @@ p {
   text-align: center;
 }
 </style>
+ -->

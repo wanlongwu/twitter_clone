@@ -1,3 +1,4 @@
+require 'json'
 class UsersController < ApplicationController
   def show
     @tweets = Tweet.where(user:params[:id]).order(updated_at: :desc)
@@ -8,8 +9,10 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
-    @user.following_users = @user.following_users + "," + user_params[:following_users]
+    @user = current_user
+    users_array = JSON.parse(@user.following_users)
+    users_array << user_params[:following_users].to_i
+    @user.following_users = users_array.uniq.to_s
     @user.save!
   end
 

@@ -2,6 +2,7 @@ import "bootstrap";
 import Vue from 'vue/dist/vue.esm'
 import App from '../app.vue'
 
+
 // const tweets_store = {}
 // const all_tweets = {}
 // const feed_tweets = {}
@@ -54,19 +55,21 @@ import App from '../app.vue'
 // })
 
 // // users_array is array of following users' ids
+
 let users_array = [];
-if (document.getElementById("users") != undefined) {
-  users_array = JSON.parse(document.getElementById("users").innerHTML);
+if (document.getElementById("users_array") != undefined) {
+  users_array = JSON.parse(document.getElementById("users_array").innerHTML);
 };
 
 let selectId = 0;
-// console.log(users_array);
+let currentUserId = 0
+console.log(users_array);
 
 let new_tweets = [];
 
 const addFollowStatus = (array,tweets) => {
   tweets.forEach(function(tweet){
-    if (array.includes(tweet.user_id.toString()) === true) {
+    if (array.includes(tweet.user_id) === true) {
       tweet.follow = "followed";
       // console.log(tweet.follow);
     } else {
@@ -204,7 +207,7 @@ var show = new Vue({
             following_users: `${selectId}`
           },
         },
-        url:`/users/${selectId}`,
+        url:`/users/${currentUserId}`,
         success: function(response) {
           that.errors = {};
           // console.log(that)
@@ -215,6 +218,8 @@ var show = new Vue({
           that.errors = response.responseJSON.errors;
         }
       })
+      const i = document.getElementById("follow-btn");
+      i.parentNode.removeChild(i);
     },
   }
 })

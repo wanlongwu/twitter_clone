@@ -1,3 +1,5 @@
+require 'json'
+
 class TweetsController < ApplicationController
   # skip_before_action :verify_authenticity_token
 
@@ -18,7 +20,7 @@ class TweetsController < ApplicationController
   def index
     @tweets = Tweet.all.order(updated_at: :desc)
     @users_array = []
-    @users_array = current_user.following_users.split(" ") if current_user.following_users != nil
+    @users_array = JSON.parse(current_user.following_users) if current_user.following_users != nil
 
     respond_to do |format|
       format.html
@@ -30,7 +32,7 @@ class TweetsController < ApplicationController
     following_tweets = []
     @users_array = []
     if current_user != nil && current_user.following_users != nil
-      @users_array = current_user.following_users.split(" ")
+      @users_array = JSON.parse(current_user.following_users)
       @users_array.each do |user_id|
         user_obj = User.find(user_id)
         following_tweets += user_obj.tweets
