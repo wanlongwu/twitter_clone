@@ -17,7 +17,7 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.all.order(updated_at: :desc)
-
+    @users_array = []
     @users_array = current_user.following_users.split(" ") if current_user.following_users != nil
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class TweetsController < ApplicationController
 
   def feed
     following_tweets = []
-
+    @users_array = []
     if current_user != nil && current_user.following_users != nil
       @users_array = current_user.following_users.split(" ")
       @users_array.each do |user_id|

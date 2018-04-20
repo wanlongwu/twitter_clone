@@ -201,7 +201,7 @@ var show = new Vue({
         beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
         data: {
           user:{
-            following_users: [`${selectId}`]
+            following_users: `${selectId}`
           },
         },
         url:`/users/${selectId}`,
