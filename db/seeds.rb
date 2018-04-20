@@ -14,16 +14,16 @@ User.destroy_all
 # end
 
 names_attributes = [
-  {password:"123456", username: "Salena Gomez", email:'sg@sg.com'},
-  {password:"123456", username: "Mark allen", email:'ma@ma.com'},
-  {password:"123456", username: "Adam sandler", email:'as@as.com'},
-  {password:"123456", email:'he@as.com', username: "Hessa"},
-  {password:"123456", email:'hen@as.com', username: "Henry"},
-  {password:"123456", email:'kev@as.com', username: "Kevin"},
-  {password:"123456", email:'wan@as.com', username: "Wanlong"},
-  {password:"123456", email:'shi@as.com', username: "Shinzo Abe"},
-  {password:"123456", email:'Don@as.com', username: "Don Johnson"},
-  {password:"123456", email:'Mic@as.com', username: "Mickey Mouse", following_users: "1 2 3"}
+  {password:"123456", username: "Salena Gomez", email:'sg@sg.com', following_users: "[1,2,3]"},
+  {password:"123456", username: "Mark allen", email:'ma@ma.com', following_users: "[1,2,3]"},
+  {password:"123456", username: "Adam sandler", email:'as@as.com', following_users: "[1,2,3]"},
+  {password:"123456", email:'he@as.com', username: "Hessa", following_users: "[4,5,6]"},
+  {password:"123456", email:'hen@as.com', username: "Henry", following_users: "[4,5,6]"},
+  {password:"123456", email:'kev@as.com', username: "Kevin", following_users: "[4,5,6]"},
+  {password:"123456", email:'wan@as.com', username: "Wanlong", following_users: "[4,5,6]"},
+  {password:"123456", email:'shi@as.com', username: "Shinzo Abe", following_users: "[7,8,9]"},
+  {password:"123456", email:'Don@as.com', username: "Don Johnson", following_users: "[7,8,9]"},
+  {password:"123456", email:'Mic@as.com', username: "Mickey Mouse", following_users: "[7,8,9]"}
 ]
 
 User.create!(names_attributes)
