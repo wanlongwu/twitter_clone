@@ -58,6 +58,8 @@ let users_array = [];
 if (document.getElementById("users") != undefined) {
   users_array = JSON.parse(document.getElementById("users").innerHTML);
 };
+
+let selectId = 0;
 // console.log(users_array);
 
 let new_tweets = [];
@@ -173,7 +175,7 @@ var show = new Vue({
     errors: {}
   },
   mounted: function() {
-    const selectId = document.getElementById("select-id").innerHTML;
+    selectId = document.getElementById("select-id").innerHTML;
     const a = `/users/${selectId}.json`;
     console.log(selectId);
     var that;
@@ -189,5 +191,31 @@ var show = new Vue({
         }
     });
   },
+  methods: {
+    follow: function() {
+      var that;
+      that = this;
+      console.log(selectId);
+      $.ajax({
+        method: 'PUT',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        data: {
+          user:{
+            following_users: [`${selectId}`]
+          },
+        },
+        url:`/users/${selectId}`,
+        success: function(response) {
+          that.errors = {};
+          // console.log(that)
+          // console.log(response)
+          that.tweets.unshift(response);
+        },
+        error: function(response) {
+          that.errors = response.responseJSON.errors;
+        }
+      })
+    },
+  }
 })
 

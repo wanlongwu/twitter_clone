@@ -6,4 +6,16 @@ class UsersController < ApplicationController
       format.json { render :json => @tweets.to_json(include: :user) }
     end
   end
+
+  def update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:following_users)
+  end
+
 end
