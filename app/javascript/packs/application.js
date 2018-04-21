@@ -58,12 +58,12 @@ import App from '../app.vue'
 
 let users_array = [];
 if (document.getElementById("users_array") != undefined) {
-  users_array = JSON.parse(document.getElementById("users_array").innerHTML);
+  users_array = document.getElementById("users_array").innerHTML;
 };
 
 let selectId = 0;
 let currentUserId = 0
-console.log(users_array);
+
 
 let new_tweets = [];
 
@@ -71,7 +71,7 @@ const addFollowStatus = (array,tweets) => {
   tweets.forEach(function(tweet){
     if (array.includes(tweet.user_id) === true) {
       tweet.follow = "followed";
-      // console.log(tweet.follow);
+      console.log(tweet.follow);
     } else {
       tweet.follow = "not followed"
       // console.log(tweet.follow);
@@ -180,13 +180,13 @@ var show = new Vue({
   mounted: function() {
     selectId = document.getElementById("select-id").innerHTML;
     const a = `/users/${selectId}.json`;
-    console.log(selectId);
+    // console.log(selectId);
     var that;
     that = this;
     $.ajax({
       url: a,
       success: function(response) {
-        console.log(response);
+        // console.log(response);
         that.tweets = response;
       },
       error: function(response) {
@@ -198,28 +198,63 @@ var show = new Vue({
     follow: function() {
       var that;
       that = this;
-      console.log(selectId);
-      $.ajax({
-        method: 'PUT',
-        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-        data: {
-          user:{
-            following_users: `${selectId}`
+      currentUserId = parseInt(document.getElementById("current-user-id").innerHTML, 10);
+      let followId = parseInt(`${selectId}`,10);
+      let following_array = JSON.parse(document.getElementById("following_users").innerHTML);
+      console.log(typeof currentUserId);
+      if (following_array.includes(followId) === false) {
+        following_array.push(followId);
+        console.log("+mode");
+        console.log(following_array);
+        $.ajax({
+          method: 'PUT',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: {
+            user:{
+              following_users: `${following_array}`
+            },
           },
-        },
-        url:`/users/${currentUserId}`,
-        success: function(response) {
-          that.errors = {};
-          // console.log(that)
-          // console.log(response)
-          that.tweets.unshift(response);
-        },
-        error: function(response) {
-          that.errors = response.responseJSON.errors;
-        }
-      })
-      const i = document.getElementById("follow-btn");
-      i.parentNode.removeChild(i);
+          url:`/users/${currentUserId}`,
+          success: function(response) {
+            that.errors = {};
+            // console.log(that)
+            // console.log(response)
+            that.tweets.unshift(response);
+          },
+          error: function(response) {
+            that.errors = response.responseJSON.errors;
+          }
+        })
+      } else {
+        following_array = following_array.filter(item => item !== followId)
+        console.log("-mode");
+
+        $.ajax({
+          method: 'PUT',
+          beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+          data: {
+            user:{
+              following_users: `${following_array}`
+            },
+          },
+          url:`/users/${currentUserId}`,
+          success: function(response) {
+            that.errors = {};
+            // console.log(that)
+            // console.log(response)
+            that.tweets.unshift(response);
+          },
+          error: function(response) {
+            that.errors = response.responseJSON.errors;
+          }
+        })
+      }
+
+
+      // console.log(users_array);
+
+      // const i = document.getElementById("follow-btn");
+      // i.parentNode.removeChild(i);
     },
   }
 })
