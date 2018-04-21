@@ -1,23 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
 
-<h1>Tweets</h1>
+      <h1>Tweets</h1>
 
-<div id="tweets">
-  <label>tweet now!</label>
-  <input type="text" v-model="tweet.content" />
-  <span style="color:red">{{ errors.content }}</span>
-  <button @click="saveTweet">Submit</button>
+      <div id="tweets">
+        <label>tweet now!</label>
+        <input type="text" class="form-control input-lg" v-model="tweet.content" />
+        <span style="color:red">{{ errors.content }}</span>
+        <button @click="saveTweet">Submit</button>
 
-  <table>
-    <tbody>
-      <tr v-for="tweet in tweets">
-      <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
-      <td>{{ tweet.follow }}</td>
-        <td>{{ tweet.content }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="users_array" style="display: none;"> <%= @users_array %> </div>
+            <ul class="list-group" v-for="tweet in tweets">
+            <li class="list-group-item tweet-row"><a v-bind:href="'/users/'+ tweet.user.id"><%= cl_image_tag("profile.png") %> {{ tweet.user.username }} </a>
+            {{ tweet.follow }}
+            {{ tweet.content }}</li>
+            </ul>
+        <div id="users_array" style="display: none;"> <%= @users_array %> </div>
 
+      </div>
+
+  </div>
+  </div>
 </div>
+
 
 
