@@ -1,23 +1,22 @@
 
-<h1>Tweets</h1>
 
-<div id="feeds">
-  <label>tweet now!</label>
-  <input type="text" v-model="tweet.content" />
+<div id="feeds" class="container feeds-list">
+  <h3 class="text-center">Welcome</h3>
+  <h4> tweet now!</h4>
+  <input type="text" class="form-control input-lg" v-model="tweet.content" />
   <span style="color:red">{{ errors.content }}</span>
-  <button @click="saveTweet">Submit</button>
+  <button class="btn btn-primary tweet-btn" @click="saveTweet">Submit</button>
 
-  <table>
-    <tbody>
-      <tr v-for="tweet in tweets">
-        <td> <%= cl_image_tag("profile.png") %> </td>
-        <td><a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a></td>
-        <td>{{ tweet.follow }}</td>
-        <td>{{ tweet.content }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <div id="users" style="display: none;"> <%= @users_array %> </div>
+
+    <ul class="list-group" v-for="tweet in tweets">
+      <li class="list-group-item tweet-row">
+        <a v-bind:href="'/users/'+ tweet.user.id"> <%= cl_image_tag("profile.png") %> </a>
+        <a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a>
+        {{ tweet.content }}
+      </li>
+    </ul>
+
+  <div id="users_array" style="display: none;"> <%= @users_array %> </div>
   <div id="current_user" style="display: none;"> <%= current_user.id %> </div>
 
 </div>
