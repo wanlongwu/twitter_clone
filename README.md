@@ -1,9 +1,9 @@
-##Twitter clone (Ruby on Rails)
+# Twitter clone (Ruby on Rails)
 
-###Getting Started
+### Getting Started
 A simple twitter clone by using Ruby on Rails and Vue
 
-###Setup
+### Setup
 Download the repo and then,
 
 ```
@@ -13,17 +13,17 @@ rails db:migrate
 `webpack-dev-server` and `rails server` (on two seperate terminals)
 
 
-###Features
+### Features
 This application provides simple features includes:
 - Check timeline
 - Post new tweet
 - Follow/Unfollow users
 
-###Running the tests
+### Running the tests
 
 rails test
 
-###Used gems
+### Used gems
 - 'rails', '5.1.6'
 - bootstrap-sass
 - devise
