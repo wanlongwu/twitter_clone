@@ -4,10 +4,9 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div id="show" class="tweet-list">
-
         <h3 class="text-center"> <%= @user.username %> 's Tweets</h3>
-        <button class="btn btn-primary follow-btn" @click="follow"> click to follow/unfollow </button>
-        <ul class="list-group" v-for="tweet in tweets">
+        <button class="btn btn-primary follow-btn text-center" style="margin: auto;" @click="follow"> click to follow/unfollow </button>
+        <ul class="list-group" v-for="tweet in tweets" style="margin-top: 20px">
           <li class="list-group-item tweet-row">{{ tweet.content }}</li>
         </ul>
       </div>

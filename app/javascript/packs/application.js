@@ -220,6 +220,7 @@ var show = new Vue({
             // console.log(that)
             // console.log(response)
             that.tweets.unshift(response);
+            window.alert("Successfully followed")
           },
           error: function(response) {
             that.errors = response.responseJSON.errors;
@@ -243,6 +244,7 @@ var show = new Vue({
             // console.log(that)
             // console.log(response)
             that.tweets.unshift(response);
+            window.alert("Unfollowed")
           },
           error: function(response) {
             that.errors = response.responseJSON.errors;
