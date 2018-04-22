@@ -1,0 +1,18 @@
+.tweet-row {
+  // border: solid #246E89;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  background-color:white;
+}
+
+.tweet-row {
+  -webkit-transition: width 2s;
+  transition:all 0.3s ease;
+}
+
+.tweet-row:hover{
+  box-shadow:
+        0 0 3px #2980CB;
+  -webkit-transform: translateY(-3px);
+  transform: translateY(-3px);
+}

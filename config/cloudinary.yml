@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: db9cynf8x
+  api_key: '831788136523142'
+  api_secret: a0cJF3GTJowMD102hquMMCmbmn4
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: db9cynf8x
+  api_key: '831788136523142'
+  api_secret: a0cJF3GTJowMD102hquMMCmbmn4
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: db9cynf8x
+  api_key: '831788136523142'
+  api_secret: a0cJF3GTJowMD102hquMMCmbmn4
+  enhance_image_tag: true
+  static_image_support: false

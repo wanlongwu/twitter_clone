@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div id="feeds" class="feeds-list">
+        <h3 class="text-center">Welcome</h3>
+        <h4> Tweet now! <i>(up to 140 characters)</i></h4>
+        <div style="display: flex; flex-direction: column;">
+          <textarea name="Text1" cols="40" rows="5" class="form-control content" v-model="tweet.content" placeholder="Write your tweet here" ></textarea>
+          <span style="color:red">{{ errors.content }}</span>
+          <div class="button" style="display:flex">
+            <button class="btn btn-primary tweet-btn"  @click="saveTweet">Submit</button>
+            <!-- <div id="characters" class="text-center" style="margin: auto 2px"><i>0</i></div> -->
+          </div>
+        </div>
+        <ul class="list-group" v-for="tweet in tweets" style="margin-top: 20px">
+          <li class="list-group-item tweet-row" style="display: flex">
+            <div style="display: flex; align-items: center; justify-content: center;   flex-direction: column;">
+              <a class="img-thumbnail" v-bind:href="'/users/'+ tweet.user.id"> <%= image_tag("user-default.png", height: '64', width: '64')%> </a>
+              <a v-bind:href="'/users/'+ tweet.user.id" class="text-center" style="width: 120px"> {{ tweet.user.username }} </a>
+            </div>
+            <div style="margin: auto 20px;"> {{ tweet.content }} </div>
+          </li>
+        </ul>
+        <div id="users_array" style="display: none;"> <%= @users_array %> </div>
+        <div id="current_user" style="display: none;"> <%= current_user.id %> </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <%= javascript_pack_tag 'feed' %>
