@@ -2,6 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   mount_uploader :avatar, AvatarUploader
+  before_save :default_values
 
 
   devise :database_authenticatable, :registerable,
@@ -16,4 +17,8 @@ class User < ApplicationRecord
 
   has_many :tweets, dependent: :destroy
   validates :username, presence: true, uniqueness: true
+
+  def default_values
+    self.following_users ||= "[]"
+  end
 end

@@ -4,16 +4,19 @@
       <div id="feeds" class="feeds-list">
         <h3 class="text-center">Welcome</h3>
         <h4> tweet now!</h4>
-        <input type="text" class="form-control input-lg" v-model="tweet.content" />
-        <span style="color:red">{{ errors.content }}</span>
-        <button class="btn btn-primary tweet-btn" @click="saveTweet">Submit</button>
+        <div style="display: flex">
+          <textarea name="Text1" cols="40" rows="5" class="form-control" v-model="tweet.content" placeholder="Write your tweet here" ></textarea>
+          <span style="color:red">{{ errors.content }}</span>
+          <button class="btn btn-primary tweet-btn" @click="saveTweet">Submit</button>
+        </div>
 
-
-          <ul class="list-group" v-for="tweet in tweets">
-            <li class="list-group-item tweet-row">
-              <a v-bind:href="'/users/'+ tweet.user.id"> <%= cl_image_tag("profile.png") %> </a>
-              <a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a>
-              {{ tweet.content }}
+          <ul class="list-group" v-for="tweet in tweets" style="margin-top: 20px">
+            <li class="list-group-item tweet-row" style="display: flex">
+              <div style="display: flex; align-items: center; justify-content: center;   flex-direction: column;">
+                <a class="img-thumbnail" v-bind:href="'/users/'+ tweet.user.id"> <%= image_tag("profile.png", height: '64', width: '64')%> </a>
+                <a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a>
+              </div>
+              <div style="margin: auto 20px;"> {{ tweet.content }} </div>
             </li>
           </ul>
 
