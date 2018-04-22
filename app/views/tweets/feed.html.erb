@@ -13,8 +13,8 @@
           <ul class="list-group" v-for="tweet in tweets" style="margin-top: 20px">
             <li class="list-group-item tweet-row" style="display: flex">
               <div style="display: flex; align-items: center; justify-content: center;   flex-direction: column;">
-                <a class="img-thumbnail" v-bind:href="'/users/'+ tweet.user.id"> <%= image_tag("profile.png", height: '64', width: '64')%> </a>
-                <a v-bind:href="'/users/'+ tweet.user.id">{{ tweet.user.username }} </a>
+                <a class="img-thumbnail" v-bind:href="'/users/'+ tweet.user.id"> <%= image_tag("user-default.png", height: '64', width: '64')%> </a>
+                <a v-bind:href="'/users/'+ tweet.user.id" style="width: 120px">{{ tweet.user.username }} </a>
               </div>
               <div style="margin: auto 20px;"> {{ tweet.content }} </div>
             </li>
