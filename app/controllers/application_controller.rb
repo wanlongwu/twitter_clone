@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
 protected
 
+  #setting this up to allow updating users' attribute
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :username, :following_users, :avatar, :avatar_cache])
     devise_parameter_sanitizer.permit(:account_update, keys: [:username, :email, :password, :current_password, :following_users, :avatar, :avatar_cache])

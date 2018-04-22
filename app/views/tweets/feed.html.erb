@@ -5,7 +5,7 @@
         <h3 class="text-center">Welcome</h3>
         <h4> Tweet now! <i>(up to a 140 characters)</i></h4>
         <div style="display: flex">
-          <textarea name="Text1" cols="40" rows="5" class="form-control" v-model="tweet.content" placeholder="Write your tweet here" ></textarea>
+          <textarea name="Text1" cols="40" rows="5" class="form-control content" v-model="tweet.content" placeholder="Write your tweet here" ></textarea>
           <span style="color:red">{{ errors.content }}</span>
           <button class="btn btn-primary tweet-btn" @click="saveTweet">Submit</button>
         </div>
