@@ -2,7 +2,6 @@ require 'json'
 
 class TweetsController < ApplicationController
   # skip_before_action :verify_authenticity_token
-
   def create
     @tweet = Tweet.new(tweet_params)
     @tweet.user = current_user
