@@ -100,6 +100,7 @@ var feeds = new Vue({
     saveTweet: function() {
       var that;
       that = this;
+      console.log(that)
       if (that.tweet.content.length <= 140){
         $.ajax({
           method: 'POST',
@@ -110,7 +111,6 @@ var feeds = new Vue({
           url:'/tweets.json',
           success: function(response) {
             that.errors = {};
-            // console.log(that)
             // console.log(response)
             that.tweets.unshift(response);
           },

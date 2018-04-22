@@ -1,24 +1,23 @@
 require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::ControllerHelpers
-  test "should get show" do
+  # include Devise::Test::ControllerHelpers
+  test "should be able to sign in" do
+    @user = users(:wan)
+    @user.confirmed_at = Time.zone.now
+    @user.save
     sign_in @user
-    get root_path
+    get '/'
     assert_response :success
   end
 
-  # test 'GET new' do
-  # # Mimic the router behavior of setting the Devise scope through the env.
-  # @request.env['devise.mapping'] = Devise.mappings[:user]
-
-  # # Use the sign_in helper to sign in a fixture `User` record.
-  # sign_in users(:wan)
-
-  # get :new
-
-  # assert_response :success
-  # assert something
-# end
+  test "should be able to show user's all post" do
+    @user = users(:wan)
+    @user.confirmed_at = Time.zone.now
+    @user.save
+    sign_in @user
+    get user_path(@user.id)
+    assert_equal 200, response.status
+  end
 
 end
