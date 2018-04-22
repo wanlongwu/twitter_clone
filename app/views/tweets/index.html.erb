@@ -14,12 +14,13 @@
           </div>
         </div>
         <ul class="list-group" v-for="tweet in tweets" style="margin-top: 20px">
-          <li class="list-group-item tweet-row" style="display: flex">
+          <li class="list-group-item tweet-row" style="display: flex; justify-content: space-between;">
             <div style="display: flex; align-items: center; justify-content: center;   flex-direction: column;">
               <a class="img-thumbnail" v-bind:href="'/users/'+ tweet.user.id"> <%= image_tag("user-default.png", height: '64', width: '64')%> </a>
               <a v-bind:href="'/users/'+ tweet.user.id" class="text-center" style="width: 120px">{{ tweet.user.username }} </a>
             </div>
-            <div style="margin: auto 20px;"> {{ tweet.content }} </div>
+            <div style="margin: auto 10px; align-content: left; width: 58%;"> {{ tweet.content }} </div>
+            <div style="margin: auto 0px; align-content: right; width: 70px;"> {{ tweet.follow}} </div>
           </li>
         </ul>
         <div id="users_array" style="display: none;"> <%= @users_array %> </div>
