@@ -9,6 +9,8 @@
     <% if user_signed_in? %>
 
       <!-- Links when logged in -->
+      <%= link_to "Feed page", tweets_feed_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "General page", tweets_path, class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
@@ -17,7 +19,7 @@
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
               <%= link_to edit_user_registration_path(current_user) do %>
-                <i class="fa fa-user"></i> <%= t(".profile", default: "Edit profile") %>
+                <i class="fa fa-user"></i> <%= t(".profile", default: "Profile") %>
               <% end %>
             </li>
             <li>
