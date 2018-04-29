@@ -9,6 +9,7 @@ Download the repo and then,
 ```
 bundle install
 rails db:migrate
+rails db:seed
 ```
 `webpack-dev-server` and `rails server` (on two seperate terminals)
 
