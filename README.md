@@ -8,6 +8,7 @@ Download the repo and then,
 
 ```
 bundle install
+rails db:create
 rails db:migrate
 rails db:seed
 ```
